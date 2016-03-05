@@ -41,7 +41,7 @@ def fib(out:Output[Long],quit:Future[Boolean]):Future[(Long,Long)] =
 
 See ma, no mutable variables.
 
-## Effectized input
+## Effected input
 
 Another common pattern in Go programming: modifying of channels when reading/writing one.  An immutable scala-gopher alternative will be EffectedInput, which holds channel, can participate in selector read and have an operation, which applies effect to the current state. 
 
