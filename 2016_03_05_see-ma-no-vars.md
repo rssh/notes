@@ -43,7 +43,7 @@ See ma, no mutable variables.
 
 ## Effectized input
 
-Another common pattern in Go programming: modifying of channels when reading/writing one.  An immutable scala-gopher alternative will be EffectedInput, which holds channel, can participate in selector read and have can participate in selector read and have an operation, which applies effect to the current state. 
+Another common pattern in Go programming: modifying of channels when reading/writing one.  An immutable scala-gopher alternative will be EffectedInput, which holds channel, can participate in selector read and have an operation, which applies effect to the current state. 
 
 let's look at an example:
 ```
