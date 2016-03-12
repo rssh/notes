@@ -15,3 +15,5 @@ After this goroutine will retrieve `a` and send one back to the canal which was 
 
 So, if we see in signature `Channel[Channel[A]]`  this usually means  "entry for information request about 'A'".
  
+-----------------------
+[index](https://github.com/rssh/notes)
