@@ -6,7 +6,7 @@ or [scala version](https://github.com/rssh/scala-gopher/blob/master/src/test/sca
 Why type of `listenc` is `Channel[Channel[Channel[Message]]]` ?
 
 The answer is -  exchanging information between goroutines in dynamic ways, like an emulation of 
-[asynchronous method calls](https://en.wikipedia.org/wiki/Asynchronous_method_invocation)  calls between objects.
+[asynchronous method calls](https://en.wikipedia.org/wiki/Asynchronous_method_invocation) between objects.
 
 Let we want to request information which must return to us some 'A'.
 Instead calling `o.f(x)` and invocation of a method which will return `A` on the stack, we create a channel 
