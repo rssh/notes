@@ -3,7 +3,7 @@ Why channels of channels of channels can be useful?  Why we often see statements
 Let's look at example [here](https://rogpeppe.wordpress.com/2009/12/01/concurrent-idioms-1-broadcasting-values-in-go-with-linked-channels/)
 or [scala version](https://github.com/rssh/scala-gopher/blob/master/src/test/scala/example/BroadcasterSuite.scala)
 
-While listener is a type of `Channel[Channel[Channel[Message]]]` ?
+Why type of `listenc` is `Channel[Channel[Channel[Message]]]` ?
 
 The answer is -  exchanging information between goroutines in dynamic ways, like an emulation of 
 [asynchronous method calls](https://en.wikipedia.org/wiki/Asynchronous_method_invocation)  calls between objects.
