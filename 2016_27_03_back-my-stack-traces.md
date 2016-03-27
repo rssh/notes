@@ -1,5 +1,5 @@
 
-Bring my stacktrace back from Future
+
 
 One of the annoying things when debugging concurrent Scala programs - is luck of stack traces from asynchronous calls 
 with ```Future```s.   Ie. when we span task and receive an exception from one, then it is impossible to find in the exception trace, 
