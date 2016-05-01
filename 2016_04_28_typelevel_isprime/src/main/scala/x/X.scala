@@ -69,7 +69,7 @@ class Succ[X<:Nat] extends Nat
   type IsPrime = EmptyDivides[X]
   type EmptyDivides[Y<:Nat] = Y#IfZero[Nat._1,
                                Y#IfOne[Nat._1,
-                                   DivideModule[Y]#IfZero[Nat._0,Y#EmptyDivides2[Succ[X]]]]]
+                                   DivideModule[Y]#IfZero[Nat._0,Y#Prev#EmptyDivides2[Succ[X]]]]]
   type EmptyDivides2[Y<:Nat] = Y#EmptyDivides[X]
   type DivideModule[Y<:Nat] = IfLess[Y,Y,X#DivideModule[X#Minus[Y]]]
   
