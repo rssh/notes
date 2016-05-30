@@ -3,7 +3,7 @@ Some possible contribution tasks
 
  1. More substitutes for Future callback methods. (project = trackedfuture, level = easy)
 
-  - look at Scala Future interface: https://github.com/scala/scala/blob/2.11.x/src/library/scala/concurrent/Future.scala and fine method which accept callback and not handled in https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/agent/TFMethodAdapter.scala
+  - look at Scala Future interface: https://github.com/scala/scala/blob/2.11.x/src/library/scala/concurrent/Future.scala and fine method which accept callback and not handled in https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/agent/TFMethodAdapter.scala.  Today this can be 
   - add an implementation of debugging variant to https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/runtime/TrackedFuture.scala
   - add a test (analogically to other tests) in example subproject
 
@@ -17,5 +17,8 @@ Some possible contribution tasks
   set Future in Thread-Local of all threads.  
   - If found - print stacktrace of this thread as additional information.
 
- 3. Implement select.timeout (project = scala-gopher, level=expert)
+ 3. Implement select.timeout (project = scala-gopher, level=expert)  
 
+ 4. Implement lifting async throught hight-order functions  (project = scala-gopher, level=expert, size=big )  
+
+If you decide to do something, then select timeframe, create issue and contact me
