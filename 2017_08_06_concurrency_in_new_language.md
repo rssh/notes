@@ -15,15 +15,17 @@
 So, actors are an effective way of implementing low-level behavior,  but ‘actor programming’ is not scaled.
 
 2. Channels  (CSP=Communicated Sequential Processes: Occam, Limbo, Go ….  ) 
-        * CSP operations are not safe by construction.  CSP, in some sense ‘better’ than actors:  if we have two processes, we can build a pipe between than. But it is easy to construct a set of two pipes, waiting for each other.
-        * Properties of original CSP model are difficult to implement in distributed environment:  (A <c> B,  when A send a message to B then A resume execution after B receive one.) This property requires extra roundtrip if A and B are situated on different hosts.
-        * Most implementation of CSP in programming languages are too low-level and not introduce term ‘Process’ with an explicit operation, but rather force a programmer to think concerning informal,  implicit processes.  So, again - programming with channels is not scaled. 
+     * CSP operations are not safe by construction.  CSP, in some sense ‘better’ than actors:  if we have two processes, we can build a pipe between than. But it is easy to construct a set of two pipes, waiting for each other. 
+     * Properties of original CSP model are difficult to implement in distributed environment:  (A <c> B,  when A send a message to B then A resume execution after B receive one.) This property requires extra roundtrip if A and B are situated on different hosts. 
+     * Most implementation of CSP in programming languages are too low-level and not introduce term ‘Process’ with an explicit operation, but rather force a programmer to think concerning informal,  implicit processes.  So, again - programming with channels is not scaled. 
 
-3.  Dataflow programming (sometimes named Ozz - style concurrency): [Ozz,  Alice …  ],
+3.  Dataflow programming (sometimes named Ozz - style concurrency): [Ozz,  Alice …  ] 
 
-     * The main problem is an absence of control of evaluation. Ie.  in a situation where Future[X] is undistinguished from X it is hard to know exactly the sequence and timing characteristics.  
+     * The main problem is an absence of control of evaluation. Ie.  in a situation where Future[X] is undistinguished from X it is hard to know exactly the sequence and timing characteristics.   
+
 
 4.  Implicit parallelism.  - too high level.
+
 
 For now, most programmers languages provide more limited mechanisms, such as asynchronous method calls  (JavaScript,  Python) for interpreted languages and async/await macro transformations  (Scala,  Nim) for compiling. (which are very limited without runtime support for switching stacks).
 
