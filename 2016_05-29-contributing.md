@@ -3,7 +3,7 @@ Some possible contribution tasks
 
  1. More substitutes for Future callback methods. (project = trackedfuture, level = easy)
 
-  - look at Scala Future interface: https://github.com/scala/scala/blob/2.11.x/src/library/scala/concurrent/Future.scala and fine method which accept callback and not handled in https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/agent/TFMethodAdapter.scala.  Today this can be `onSuccess` or `onFailure`
+  - look at Scala Future interface: https://github.com/scala/scala/blob/2.11.x/src/library/scala/concurrent/Future.scala and find method which accept callback and not handled in https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/agent/TFMethodAdapter.scala.  Today this can be `onSuccess` or `onFailure`
   - add an implementation of debugging variant to https://github.com/rssh/trackedfuture/blob/master/agent/src/main/scala/trackedfuture/runtime/TrackedFuture.scala
   - add a test (analogically to other tests) in example subproject
 
