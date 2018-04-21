@@ -57,7 +57,7 @@ class Succ[X<:Nat] extends Nat
   type Prev = X
 
   type Plus[Y<:Nat] = Succ[X#Plus[Y]]
-  type Mult[Y<:Nat] = Y#Plus[X]
+  type Mult[Y<:Nat] = X#IfZero[X,Y#Plus[Prev#Mult[Y]]]§
   type Minus[Y<:Nat] = Y#IfZero[X,X#Minus[Y#Prev]]
   type Ack[Y <: Nat] = Y#Ack2[X]
   type Ack2[Y <: Nat] = Y#Ack[Succ[Y]#Ack[X]]
