@@ -1,20 +1,50 @@
 ## Problem:  automatic coloring of effect monads in [dotty-cps-async](https://github.com/rssh/dotty-cps-async)
 
 
- For quick recap what is it at all, you can read https://rssh.github.io/dotty-cps-async/Features.html#automatic-coloring or
+ What is it at all, you can read https://rssh.github.io/dotty-cps-async/Features.html#automatic-coloring 
 <details>
   <summary> 
-     A quick recap here.
+     (or a quick recap here)
   </summary>
+    
+ If we have some async/await structure, then we should split our code technically into two parts (colors):  one works with async expressions (i.e.,, F[T]) and one - sync. (T without F).
+
+ If we want to put asynchronous expression into synchronous function, we should write `await(expr)` instead `expr`,  for transforming asynchronous call into synchronous: 
+
+ ```
+   val c = async[F]{
+        val url = "http://www.example.com"
+        val data = await(api.fetchUrl("http://www.example.com"))
+        val theme = api.classifyText(data)
+        val dmpInfo: String = await(api.retrieveDMPInfo(url, await(theme), "1"))
+        dmpInfo
+     }
+```
+
+Note that setting async/await is not adding something to business logic. Let's hide awaits which can be inserted automatically:
+
+ ```
+   import cps.automaticColoring{*,given}
+ 
+    val c = async[F]{
+        val url = "http://www.example.com"
+        val data = api.fetchUrl("http://www.example.com")
+        val theme = api.classifyText(data)
+        val dmpInfo: String = api.retrieveDMPInfo(url, theme, "1")
+        dmpInfo
+     }
+ ```
+
+We see - code is much more cleaner. 
+
 
 </details>
 
-Automatic coloring is easy for caching monads, like futures.  
-But what to do with effects monads like cats IO, monix Task, or ziverge ZIO?
+Automatic coloring is easy for caching monads, like futures.  But what to do with effects monads like cats IO, monix Task, or ziverge ZIO?
 
 ### Attempt 0: no coloring at all.
 
-    The problem -- notation becomes impractical because in programming with effect, near any action is effectful, we need to place `await` on each line of the code.
+The problem -- notation becomes impractical because in programming with effect, near any action is effectful, we need to place `await` on each line of the code.
 
 Look at the next block at code, 
 
@@ -96,7 +126,8 @@ When we memoize effect, we created two values each time, one for the original an
 
 Attempt 4: current
 
-    Let us return to a relatively lightweight solution. We can define rules for variable memoization with the help of additional preliminary analysis.   If some variable is used only in a synchronous context (i.e., via await), it should be colored as synchronous (i.e., cached). If some variable is passed to other functions as effect - it should be colored as asynchronous (i.e., uncached).   If the variable is used in both synchronous and asynchronous contexts, we can't deduce the programmer’s intention and report an error. 
+Let us return to a relatively lightweight solution. We can define rules for variable memoization with the help of additional preliminary analysis.   If some variable is used only in a synchronous context (i.e., via await), it should be colored as synchronous (i.e., cached). If some variable is passed to other functions as effect - it should be colored as asynchronous (i.e., uncached).   If the variable is used in both synchronous and asynchronous contexts, we can't deduce the programmer’s intention and report an error. 
+
    These rules are relatively intuitive and straightforward. However, as a side-effect, we catch typical errors when developers forget to specify the proper context where both synchronous and asynchronous cases are possible.
 
 Look at the line 6 of our auto-coloer fizz-buzz:
@@ -107,7 +138,7 @@ Look at the line 6 of our auto-coloer fizz-buzz:
       val counter = PEIntRef.make(-1)
       while {
         val v = counter.increment()
-        logger.log(v.toString)
+        logger.log(v.toString) // [error here]
         if (v % 3 == 0) then
            logger.log("Fizz")
         if (v % 5 == 0) then
