@@ -153,5 +153,7 @@ Here, toString is possible for both `PureEffect[X]` and `X`, so the compiler wil
 
 Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than one.	
 
+Have ideas - let's discuss in https://github.com/rssh/dotty-cps-async/discussions/43
+
 ----------
 [index](https://github.com/rssh/notes)
