@@ -151,7 +151,7 @@ Look at the line 6 of our auto-coloer fizz-buzz:
 
 Here, toString is possible for both `PureEffect[X]` and `X`, so the compiler will not insert `await` here, and the program will print the internal string representation of effect. Coloring macro will report the error here.
 
-Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than one.	
+Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than once.	
 
 Have ideas - let's discuss in https://github.com/rssh/dotty-cps-async/discussions/43
 
