@@ -44,7 +44,7 @@ Automatic coloring is easy for caching monads, like futures.  But what to do wit
 
 ### Attempt 0: no coloring at all.
 
-The problem -- notation becomes impractical because in programming with effect, near any action is effectful, we need to place `await` on each line of the code.
+The problem -- notation becomes impractical because in programming with effects, near any action is effectful, we need to place `await` on each line of the code.
 
 Look at the next block at code, 
 
