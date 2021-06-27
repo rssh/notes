@@ -40,7 +40,7 @@ We see - code is much more cleaner.
 
 </details>
 
-Automatic coloring is easy for caching monads, like futures.  But what to do with effects monads like cats IO, monix Task, or ziverge ZIO?
+Automatic coloring is easy for caching monads, like futures.  But what to do with effects monads like cats or scalaz IO, monix Task, or ziverge ZIO?
 
 ### Attempt 0: no coloring at all.
 
