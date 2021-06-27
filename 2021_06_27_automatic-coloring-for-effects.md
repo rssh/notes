@@ -122,4 +122,5 @@ Here, toString is possible for both `PureEffect[X]` and `X`, so the compiler wil
 
 Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than one.	
 
-
+----------
+[index](https://github.com/rssh/notes)
