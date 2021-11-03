@@ -40,11 +40,11 @@ We see - code is much more cleaner.
 
 </details>
 
-Automatic coloring is easy for caching monads, like futures.  But what to do with effects monads like cats IO, monix Task, or ziverge ZIO?
+Automatic coloring is easy for caching monads, like futures.  But what to do with effects monads like cats or scalaz IO, monix Task, or ziverge ZIO?
 
 ### Attempt 0: no coloring at all.
 
-The problem -- notation becomes impractical because in programming with effect, near any action is effectful, we need to place `await` on each line of the code.
+The problem -- notation becomes impractical because in programming with effects, near any action is effectful, we need to place `await` on each line of the code.
 
 Look at the next block at code, 
 
@@ -124,7 +124,7 @@ When we memoize effect, we created two values each time, one for the original an
   
    Ok, can we create a specialized monad with the semantics of  'already memoized effect'  and using  `async[Cached[PureEffect]]` instead `async[PureEffect]` for automatically translating instances of effects into caching effect monads.  Interesting that the building of such a monad is not trivial.  Problem - when we have an expression like `val x = pureEffect(..)`, the compiler already typed variable, and we can't change this type easily.  So, we should wrap Cached[PureEffect[X]]  back into PureEffect[X].  Potentially this can be interesting, but now I have stopped when the resulting construction becomes too heavy. 
 
-Attempt 4: current
+### Attempt 4: current
 
 Let us return to a relatively lightweight solution. We can define rules for variable memoization with the help of additional preliminary analysis.   If some variable is used only in a synchronous context (i.e., via await), it should be colored as synchronous (i.e., cached). If some variable is passed to other functions as effect - it should be colored as asynchronous (i.e., uncached).   If the variable is used in both synchronous and asynchronous contexts, we can't deduce the programmer’s intention and report an error. 
 
@@ -151,7 +151,9 @@ Look at the line 6 of our auto-coloer fizz-buzz:
 
 Here, toString is possible for both `PureEffect[X]` and `X`, so the compiler will not insert `await` here, and the program will print the internal string representation of effect. Coloring macro will report the error here.
 
-Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than one.	
+Also, preliminary analysis allows us to catch a situation where the variable, defined outside of the async block, is used in synchronous context more than once.	
+
+Have ideas - let's discuss in https://github.com/rssh/dotty-cps-async/discussions/43
 
 ----------
 [index](https://github.com/rssh/notes)
