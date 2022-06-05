@@ -1,4 +1,4 @@
-## Structured concurrenty with Scala Future
+## Structured concurrency with Scala Future
   
 ### FutureScope
 
