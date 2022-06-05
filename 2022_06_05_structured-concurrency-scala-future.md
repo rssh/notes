@@ -2,7 +2,7 @@
   
 ### FutureScope
 
-I sketched a small API, how structured on top of plain Scala Futures can look.
+I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured on top of plain Scala Futures can look.
 The idea is to have a scope context, which can be injected into an async block, and a set of structured operations defined for scope, automatically canceled when the main execution flow is terminated.
 
 ```Scala
@@ -107,11 +107,11 @@ Here - FutureGroup.collect create a future group, then we read ten successful re
 
 ### Happy Eyeball
 
-The classical illustration of structured concurrency is an implementation of some subset of RFC8305 (Happy Eyeball), which specifies requirements for an algorithm of opening a connection to a host, which can be resolved to multiple IP addresses in multiply address families. We should open a client socket, preferring an IP6 address family (if one is available) and minimizing visual delay.
+The classical illustration of structured concurrency is an implementation of some subset of RFC8305 [Happy Eyeball](https://datatracker.ietf.org/doc/html/rfc8305), which specifies requirements for an algorithm of opening a connection to a host, which can be resolved to multiple IP addresses in multiply address families. We should open a client socket, preferring an IP6 address family (if one is available) and minimizing visual delay.
 
 Here are implementations of two subsets:
 - HappyEyeball.  here we model choosing of address family and opening connection.
-- LiteHappyEyeball – here we model only connection opening. It's interesting because we can compare it with ZIO-based implementation of Adam Warski: https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152
+- LiteHappyEyeball – here we model only connection opening. It's interesting because we can compare it with [ZIO-based implementation of Adam Warski:](https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152)
 (Here, I don't want to say that one style is better than the other: my view of programming styles is not a strong preference of one over another but rather a view of the landscape, where the difference between different places is a part of beauty). 
 
 ### Sad part - why I'm writing this now:
