@@ -2,7 +2,7 @@
   
 ### FutureScope
 
-I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured on top of plain Scala Futures can look.
+I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured concurrency on top of plain Scala Futures can look.
 The idea is to have a scope context, which can be injected into an async block, and a set of structured operations defined for scope, automatically canceled when the main execution flow is terminated.
 
 ```Scala
