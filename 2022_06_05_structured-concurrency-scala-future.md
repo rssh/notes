@@ -121,6 +121,8 @@ Also exists a set of choices, which can be configured and is interesting to disc
 - should we cancel() child context implicitly (as now), or join or ask user finish with cancel or join ?
 - should we propagate exceptions or leave this duty to the user and issue a warning when see possible unhandled exception?
 
+[Discussion](https://github.com/rssh/dotty-cps-async/discussions/57)
+
 Now I have a minimal time budget because my attention is focused on other issues due  to well-known factors. From the other side, I see that possibility of structured concurrency with Futures can be have practical impact for choosing Scala language for a set of the projects.  So, I am throwing this into the air, hoping that somebody will find this helpful (and maybe create an open-source library, which I will be happy to contribute).  I'm planning to return to this later, but can't say when.  
 
 P.S.  You can bring this time closer, by [donating to charity supporting Ukrainian army](https://aerorozvidka.xyz/). 
