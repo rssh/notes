@@ -50,7 +50,7 @@ trait EventFlow[E] {
 
 A classical example, with the parallel search in the binary tree [], which should be finished after first success looks like:
 
-```
+```Scala
 enum BinaryTree[+T:Ordering] {
   case Empty extends BinaryTree[Nothing]
   case Node[T:Ordering](value: T, left: BinaryTree[T], right: BinaryTree[T]) extends BinaryTree[T]
