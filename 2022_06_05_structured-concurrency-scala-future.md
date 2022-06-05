@@ -111,7 +111,7 @@ The classical illustration of structured concurrency is an implementation of som
 
 Here are implementations of two subsets:
 - [HappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/HappyEyeballs2.scala).  here we model choosing of address family and opening connection.
-- [LiteHappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/LiteHappyEyeballs.scala) – here we model only connection opening. It's interesting because we can compare it with [ZIO-based implementation of Adam Warski:](https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152)
+- [LiteHappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/LiteHappyEyeballs.scala) – here we model only connection opening. It's interesting because we can compare it with [ZIO-based implementation of Adam Warski:](https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152) which implements the same subset.
 (Here, I don't want to say that one style is better than the other: my view of programming styles is not a strong preference of one over another but rather a view of the landscape, where the difference between different places is a part of beauty). 
 
 ### Why I'm writing this now:
