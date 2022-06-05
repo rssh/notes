@@ -2,7 +2,7 @@
   
 ### FutureScope
 
-I sketched a small API, how structured on top of plain Scala Futures can look.
+I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured on top of plain Scala Futures can look.
 The idea is to have a scope context, which can be injected into an async block, and a set of structured operations defined for scope, automatically canceled when the main execution flow is terminated.
 
 ```Scala
@@ -50,7 +50,7 @@ trait EventFlow[E] {
 
 A classical example, with the parallel search in the binary tree [], which should be finished after first success looks like:
 
-```
+```Scala
 enum BinaryTree[+T:Ordering] {
   case Empty extends BinaryTree[Nothing]
   case Node[T:Ordering](value: T, left: BinaryTree[T], right: BinaryTree[T]) extends BinaryTree[T]
@@ -107,19 +107,21 @@ Here - FutureGroup.collect create a future group, then we read ten successful re
 
 ### Happy Eyeball
 
-The classical illustration of structured concurrency is an implementation of some subset of RFC8305 (Happy Eyeball), which specifies requirements for an algorithm of opening a connection to a host, which can be resolved to multiple IP addresses in multiply address families. We should open a client socket, preferring an IP6 address family (if one is available) and minimizing visual delay.
+The classical illustration of structured concurrency is an implementation of some subset of RFC8305 [Happy Eyeball](https://datatracker.ietf.org/doc/html/rfc8305), which specifies requirements for an algorithm of opening a connection to a host, which can be resolved to multiple IP addresses in multiply address families. We should open a client socket, preferring an IP6 address family (if one is available) and minimizing visual delay.
 
 Here are implementations of two subsets:
-- HappyEyeball.  here we model choosing of address family and opening connection.
-- LiteHappyEyeball – here we model only connection opening. It's interesting because we can compare it with ZIO-based implementation of Adam Warski: https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152
+- [HappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/HappyEyeballs2.scala).  here we model choosing of address family and opening connection.
+- [LiteHappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/LiteHappyEyeballs.scala) – here we model only connection opening. It's interesting because we can compare it with [ZIO-based implementation of Adam Warski:](https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152) which implements the same subset.
 (Here, I don't want to say that one style is better than the other: my view of programming styles is not a strong preference of one over another but rather a view of the landscape, where the difference between different places is a part of beauty). 
 
-### Sad part - why I'm writing this now:
+### Why I'm writing this now:
 
 Currently, this is just a directory inside JVM tests in dotty-cps-async.  To make this a usable library, we need to do some work:  document API, add tests, implement obvious extensions, port to js/native, etc.    
 Also exists a set of choices, which can be configured and is interesting to discuss: 
 - should we cancel() child context implicitly (as now), or join or ask user finish with cancel or join ?
 - should we propagate exceptions or leave this duty to the user and issue a warning when see possible unhandled exception?
+
+[Discussion](https://github.com/rssh/dotty-cps-async/discussions/57)
 
 Now I have a minimal time budget because my attention is focused on other issues due  to well-known factors. From the other side, I see that possibility of structured concurrency with Futures can be have practical impact for choosing Scala language for a set of the projects.  So, I am throwing this into the air, hoping that somebody will find this helpful (and maybe create an open-source library, which I will be happy to contribute).  I'm planning to return to this later, but can't say when.  
 
