@@ -1,6 +1,7 @@
 # notes
 just place for some random notes about programming 
 
+* 2022.06/05 [Structured concurrency on top of plain Scala Future](https://github.com/rssh/notes/blob/master/2022_06_05_structured-concurrency-scala-future.md)
 * 2021.11.03 [The worlds is loosely coupled](https://github.com/rssh/notes/blob/master/2021_11_03_business_vs_match.md)
 * 2021.06.27 [automatic coloring of effect monads](https://github.com/rssh/notes/blob/master/2021_06_27_automatic-coloring-for-effects.md)
 * 2017.12.14 [deduce variance rules fron Liskov Substitution Principle](https://github.com/rssh/notes/blob/master/2017_12_14-variance-from-lsp.md)
