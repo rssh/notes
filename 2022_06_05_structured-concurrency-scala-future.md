@@ -114,7 +114,7 @@ Here are implementations of two subsets:
 - [LiteHappyEyeball](https://github.com/rssh/dotty-cps-async/blob/master/jvm/src/test/scala/futureScope/examples/LiteHappyEyeballs.scala) – here we model only connection opening. It's interesting because we can compare it with [ZIO-based implementation of Adam Warski:](https://blog.softwaremill.com/happy-eyeballs-algorithm-using-zio-120997ba5152)
 (Here, I don't want to say that one style is better than the other: my view of programming styles is not a strong preference of one over another but rather a view of the landscape, where the difference between different places is a part of beauty). 
 
-### Sad part - why I'm writing this now:
+### Why I'm writing this now:
 
 Currently, this is just a directory inside JVM tests in dotty-cps-async.  To make this a usable library, we need to do some work:  document API, add tests, implement obvious extensions, port to js/native, etc.    
 Also exists a set of choices, which can be configured and is interesting to discuss: 
