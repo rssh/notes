@@ -13,5 +13,5 @@ The problem is that nobody does this for economic reasons: the Lightbend story s
 
 Yet another complication is that after project Loom finishes incubation and becomes a part of JDK, we will see the second round of the disruption of async frameworks. There is no point in investing in a solution that will become obsolete in a few months.
 
-I'm sure that after those few mothers, we will see an exciting offering in this space.  How niche/mainstream it will be (along with the Scala language itself)  -  it' a question.
+I'm sure that after those few mothers, we will see an exciting offering in this space.  How niche/mainstream it will be (along with the Scala language itself)  -  it's a question that depends on founding a suitable business model.
 
