@@ -1,8 +1,8 @@
-## Structured concurrenty with Scala Future
+## Structured concurrency with Scala Future
   
 ### FutureScope
 
-I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured on top of plain Scala Futures can look.
+I sketched a [small API](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope), how structured concurrency on top of plain Scala Futures can look.
 The idea is to have a scope context, which can be injected into an async block, and a set of structured operations defined for scope, automatically canceled when the main execution flow is terminated.
 
 ```Scala
@@ -116,7 +116,7 @@ Here are implementations of two subsets:
 
 ### Why I'm writing this now:
 
-Currently, this is just a directory inside JVM tests in dotty-cps-async.  To make this a usable library, we need to do some work:  document API, add tests, implement obvious extensions, port to js/native, etc.    
+Currently, this is just a [directory](https://github.com/rssh/dotty-cps-async/tree/master/jvm/src/test/scala/futureScope) inside JVM tests in dotty-cps-async.  To make this a usable library, we need to do some work:  document API, add tests, implement obvious extensions, port to js/native, etc.    
 Also exists a set of choices, which can be configured and is interesting to discuss: 
 - should we cancel() child context implicitly (as now), or join or ask user finish with cancel or join ?
 - should we propagate exceptions or leave this duty to the user and issue a warning when see possible unhandled exception?
