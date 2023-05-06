@@ -16,6 +16,7 @@ Yet another complication is that after project Loom finishes incubation and beco
 I'm sure that after those few monthes, we will see an exciting offering in this space.  How niche/mainstream it will be (along with the Scala language itself)  -  it's a question that depends on founding a suitable business model.
 
 Update:
+
 [1] Is overkill is some simplification. It is better to say it is overkill, and converting Future to some effect system is a lot of work because those models are different: Future responsibility of running and canceling an appropriative process is on the supplier; in IO/ZIO, the consumer runs this process. Those semantics are different – you can't automatically or semi-automatically convert applications written with  Future to IO/ZIOt:  you will need to rethink all flow and redefine it entirely with the new distribution of responsibilities between consumer and supplier,  
 
 [2] Having a good Future stack will be in the interests of the effect systems adherents, too,  because it will be possible to convert neophytes to use effects in the next Scala project. With a user base, this will be a little easier.
