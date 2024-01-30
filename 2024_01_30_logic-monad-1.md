@@ -107,8 +107,7 @@ def isFree(p:Pos, prefix:IndexedSeq[Pos]):Boolean =
     prefix.forall(pp => !isBeat(p, pp))
 
 
-def queens[M[_]:CpsLogicMonad](
-   n:Int, prefix:IndexedSeq[Pos]=IndexedSeq.empty): M[IndexedSeq[Pos]] = reify[M] {
+def queens[M[_]:CpsLogicMonad](n:Int, prefix:IndexedSeq[Pos]=IndexedSeq.empty): M[IndexedSeq[Pos]] = reify[M] {
  if (prefix.length >= n) then
    prefix
  else
