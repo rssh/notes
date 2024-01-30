@@ -21,7 +21,7 @@ def seqOr(x: M[A], y: M[A]): M[A]
 
 The Haskell base library has two variants of standard interfaces for this:  the traditional interface is `MonadPlus`, a modern - `Alternative`[^1].
 
-[^1]: The history behind these two names is that MonadPlus has an appropriate signature. Still, often, people think that a MonadPlust operation (seqOr in our case) should form a monoid, which is true for the case logical search:. Details:  https://stackoverflow.com/questions/15722906/must-mplus-always-be-associative-haskell-wiki-vs-oleg-kiselyov 
+[^1]: The history behind these two names is that MonadPlus has an appropriate signature. Still, often, people think that a MonadPlust operation (seqOr in our case) should form a monoid, which is not true for the case logical search:. Details:  https://stackoverflow.com/questions/15722906/must-mplus-always-be-associative-haskell-wiki-vs-oleg-kiselyov 
 
 In the traditional Haskell notation, `empty`  is `mzero` and `seqOr` is `mplus`.
 
