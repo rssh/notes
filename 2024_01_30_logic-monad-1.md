@@ -1,13 +1,13 @@
 
 # Scala and logical monad programming.
 
-  Here (https://github.com/rssh/dotty-cps-async/tree/master/logic) is a small library, 'dotty-cps-async-logic', where a typeclass and default implementation is defined for logical progeamming with backtracking.
+  Here (https://github.com/rssh/dotty-cps-async/tree/master/logic) is a small library, 'dotty-cps-async-logic,' where a type class and default implementation are defined for logical programming with backtracking.
 
 
 ##  What is a logic monad for application developers?  
 
  From the name,  operations in this monad should allow us to perform logical operations over the logical computation wrapped in a monadic value.
- We can interpet monad expressin `M[A]` as a computation of some puzzle, which can have answers of type `A` 
+ We can interpret the monad expression `M[A]` as a computation of some puzzle, which can have answers of type `A` 
 
  To use those answers, we should represent the execution result as an asynchronous stream,  which forces the computation of the following value when the previous value is consumed.  
 
@@ -23,14 +23,14 @@ The Haskell base library has two variants of standard interfaces for this:  the 
 
 [^1]: The history behind these two names is that MonadPlus has an appropriate signature. Still, often, people think that a MonadPlust operation (seqOr in our case) should form a monoid, which is true for the case logical search:. Details:  https://stackoverflow.com/questions/15722906/must-mplus-always-be-associative-haskell-wiki-vs-oleg-kiselyov 
 
-In the traditional Haskell notation `empty`  is `mzero` and `seqOr` is `mplus`.
+In the traditional Haskell notation, `empty`  is `mzero` and `seqOr` is `mplus`.
 
-We can represent other logical operations as operations on streams. The most usefull are:
+We can represent other logical operations as operations on streams. The most useful are:
 
 ```Scala
     def filter[A](M[A])(p: A=>Boolean):M[A]
 ```
-Or better, let use Scala3 extension syntax and get actual definition from L
+Or better, let us Scala3 extension syntax and get actual definitions:
 
 ```Scala
     extension[M[_]:CpsLogicMonad,A](ma: M[A])
@@ -70,12 +70,12 @@ We can make some operations fancier by providing callable synonyms inside direct
     inline def guard[M[_]](p: =>Boolean)(using CpsLogicMonadContext[M]): Unit
 ```
 
-Note that not all logical operations are better be represented as effects – for example monadic definition of `once` is simple and intuitive. Suppose we want to make an analog as effect with a signature `def cut[M[_]](using CpsLogicContext[M]: Unit`. In that case, we will need to extend our monad with scope construction, and in all, this operation will not be intuitive and understandable without explanation.
+Note that not all logical operations are better represented as effects – for example, the monadic definition of `once` is simple and intuitive. Suppose we want to make an analog effect with a signature `def cut[M[_]](using CpsLogicContext[M]: Unit`. In that case, we will need to extend our monad with scope construction, and in all, this operation will not be intuitive and understandable without explanation.
 
-Therefore,  both direct and monadic styles are helpful; it is better to have the ability to use both of these techniques when they are appropriate. It's why, in direct style API for dotty-cps-async, we have an `asynchronized` operator. 
+Therefore,  both direct and monadic styles are helpful; it is better to have the ability to use both of these techniques when they are appropriate. It's why we have an `asynchronized` operator in direct style API for dotty-cps-async. 
 
 
-##  Few examples ?  
+##  Few examples?  
 
 ### List all primes:
 
@@ -117,17 +117,18 @@ def queens[M[_]:CpsLogicMonad](
 }
 
 ```
+# Q/A 
 
-# What makes the monad logical and different from the other streaming monads?  
+## What makes the monad logical and different from the other streaming monads?  
 
   - It should be lazy (in most cases, enumeration of all possible results will cause a combinatorial explosion).
   - It should be possible to define logical operators efficiently.
 
-# Can we define logical monadic operations on top of the existing streaming framework? 
+## Can we define logical monadic operations on top of the existing streaming framework? 
 
 Yes, when the streaming library can efficiently implement concatenation. In practice – optimized `mplus` implementation is not trivial.  For example, for the synchronous variant, in the standard Scala library exists `LazyList``, where we can define all logic operations,  but running a long sequence of mplus will cause stack overflow errors. 
 
-# But such logic programming is quite limited because it is applicable only to 'generate and apply'  algorithms.
+## But such logic programming is quite limited because it is applicable only to 'generate and apply'  algorithms.
 
 True.   We need a notation of logical terms and unification for the beauty of an entirely logical programming environment,  which is not defined here.   Can we design a monad for this (?) –  Sure,  but this is the theme of the future blog post.
 
