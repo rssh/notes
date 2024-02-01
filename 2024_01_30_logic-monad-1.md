@@ -125,7 +125,8 @@ def queens[M[_]:CpsLogicMonad](n:Int, prefix:IndexedSeq[Pos]=IndexedSeq.empty): 
 
 ## Can we define logical monadic operations on top of the existing streaming framework? 
 
-Yes, when the streaming library can efficiently implement concatenation. In practice – optimized `mplus` implementation is not trivial.  For example, for the synchronous variant, in the standard Scala library exists `LazyList``, where we can define all logic operations,  but running a long sequence of mplus will cause stack overflow errors. 
+Yes, when the streaming library can efficiently implement concatenation. In practice – optimized `mplus` implementation is not trivial.  For example, for the synchronous variant, in the standard Scala library exists `LazyList`, where we can define all logic operations, ~~but running a long sequence of mplus will cause stack overflow errors~~ Update: and it is 
+possible to defer concatenation.
 
 ## But such logic programming is quite limited because it is applicable only to 'generate and apply'  algorithms.
 
