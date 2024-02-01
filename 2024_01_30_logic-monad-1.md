@@ -28,9 +28,9 @@ In the traditional Haskell notation, `empty`  is `mzero` and `seqOr` is `mplus`.
 We can represent other logical operations as operations on streams. The most useful are:
 
 ```Scala
-    def filter[A](M[A])(p: A=>Boolean):M[A]
+    def filter[A](ma: M[A])(p: A=>Boolean):M[A]
 ```
-Or better, let us Scala3 extension syntax and get actual definitions:
+Or better, let's use Scala3 extension syntax and get actual definitions:
 
 ```Scala
     extension[M[_]:CpsLogicMonad,A](ma: M[A])
@@ -40,12 +40,12 @@ Or better, let us Scala3 extension syntax and get actual definitions:
        def filter(p: A=>Boolean): M[A]   
 
        // interleaves the result streams from two choices.  Often, this operation is named `fair or`.
-       def inteleave(mb: M[A]): M[A] 
+       def interleave(mb: M[A]): M[A] 
 
        // retrieves only the first result.  This operation is often called 'cut' and associated with Prolog soft cut expression.
        def once: M[A]
 
-       // combinator which continue evaluation via thenp if ma is not empty or return elsep
+       // combinator which continues evaluation via thenp if ma is not empty or return elsep
        def ifThenElse[B](thenp: a=>M[B], elsep: => M[B])
 
        // specify only the fail path for the computation
@@ -55,9 +55,9 @@ Or better, let us Scala3 extension syntax and get actual definitions:
 
 ```
 
- The standard introduction of Haskell implementation is a `LogicT` article:  *Oleg Kiselyov, Chung-chieh Shan, Daniel P. Friedman, and Amr Sabry. 2005. Backtracking, interleaving, and terminating monad transformers: <https://okmij.org/ftp/papers/LogicT.pdf>*.  Sometimes it hard to understand, I reccomend to read at first *Ralf Hinze. 2000. Deriving backtracking monad transformers.  <https://doi.org/10.1145/357766.351258>* and then return to the LogicT article.
+ The standard introduction of Haskell implementation is a `LogicT` article:  *Oleg Kiselyov, Chung-chieh Shan, Daniel P. Friedman, and Amr Sabry. 2005. Backtracking, interleaving, and terminating monad transformers: <https://okmij.org/ftp/papers/LogicT.pdf>*.  Sometimes it is hard to understand, I recommend to first read *Ralf Hinze. 2000. Deriving backtracking monad transformers.  <https://doi.org/10.1145/357766.351258>* and then return to the LogicT article.
 
- In LogicT, all stream combination operations (i.e., `interleave`,  `once`, ) are built by using one function. `msplit`
+ In LogicT, all stream combination operations (i.e., `interleave`,  `once`, ) are built by using one function `msplit`.
  
  ```Scala
      def msplit: M[Option[A,M[A]]]
