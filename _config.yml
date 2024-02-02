@@ -11,6 +11,6 @@ kramdown:
   syntax_highlighter: rouge
 plugins:
 - jekyll-feed
-   title: rssh notes
-   description: Random notes about programming
-   author: Ruslan Shevchenko
+title: rssh notes
+description: Random notes about programming
+author: Ruslan Shevchenko
