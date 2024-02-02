@@ -1,7 +1,8 @@
 --
+title: random notes
 --
 
-[comment]: #@import "{{ site.theme }}"';
+
 # notes
 just place for some random notes about programming 
 

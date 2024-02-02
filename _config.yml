@@ -1,9 +1,9 @@
 lsi: false
 safe: true
-source: /
+source: ./
 incremental: false
 highlighter: rouge
-  #theme: minima
+  theme: minima
 gist:
   noscript: false
 kramdown:
