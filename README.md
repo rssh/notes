@@ -1,7 +1,7 @@
 --
 --
 
-@import "{{ site.theme }}"';
+[comment]: #@import "{{ site.theme }}"';
 # notes
 just place for some random notes about programming 
 
