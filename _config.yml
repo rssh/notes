@@ -3,7 +3,7 @@ safe: true
 source: ./
 incremental: false
 highlighter: rouge
-  theme: minima
+#theme: minima
 gist:
   noscript: false
 kramdown:
@@ -14,3 +14,4 @@ plugins:
 title: rssh notes
 description: Random notes about programming
 author: Ruslan Shevchenko
+

@@ -1,5 +1,7 @@
+---
+title: Scala and logical monad programming.
+---
 
-# Scala and logical monad programming.
 
   Here (https://github.com/rssh/dotty-cps-async/tree/master/logic) is a small library, 'dotty-cps-async-logic,' where a type class and default implementation are defined for logical programming with backtracking.
 
