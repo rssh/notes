@@ -62,9 +62,5 @@ val items = os.list(path).filter(file =>
 val channel = Element.Channel.create(blogTitle,feedUrl,"random unsorted notes",items) 
 println(Element.Rss(channel).asXmlText)
 val rss = Element.Rss(channel).asXmlText
-val targetDir = path/"_site"
-if (!os.exists(targetDir)) {
-  os.makeDir(targetDir)
-}
-os.write.over(targetDir/"feed.xml",rss)
+os.write.over(path/"feed.xml",rss)
 
