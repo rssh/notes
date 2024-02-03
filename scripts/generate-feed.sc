@@ -7,7 +7,7 @@
 
 val blogTitle = "Random notes about programming"
 val author = "Ruslan Shevchenko <ruslan@shevchenko.kiev.ua>"
-val baseUrl = "https://github.com/rssh/notes"
+val baseUrl = "https://github.com/rssh/notes/blob/master"
 val feedUrl = "https://rssh.github.io/notes/feed.xml"
 val wd = os.pwd
 val path = if wd.toString.endsWith("scripts") && os.exists(wd / "generate-feed.sc") then
