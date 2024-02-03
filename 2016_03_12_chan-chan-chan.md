@@ -1,3 +1,5 @@
+# chan chan chan
+
 Why channels of channels of channels can be useful?  Why we often see statements like `make(chan chan chan int)` in  Go code ?
 
 Let's look at example [here](https://rogpeppe.wordpress.com/2009/12/01/concurrent-idioms-1-broadcasting-values-in-go-with-linked-channels/)
