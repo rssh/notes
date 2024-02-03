@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Random notes about programming</title>
+    <link>https://rssh.github.io/notes/feed.xml</link>
+    <description><![CDATA[random unsorted notes]]></description>
+    <docs>https://cyber.harvard.edu/rss/rss.html</docs>
+    <item>
+      <pubDate>Tue, 30 Jan 2024 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2024_01_30_logic-monad-1.md</link>
+      <title>Scala and logical monad programming.</title>
+    </item>
+    <item>
+      <pubDate>Fri, 5 May 2023 00:00:00 +0300</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2023_05_05_two_cents_about_scala_web_development_in_industry.md</link>
+      <title>About current debates about shrinking the Scala user base and the slow adoption of Scala 3:</title>
+    </item>
+    <item>
+      <pubDate>Sun, 5 Jun 2022 00:00:00 +0300</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2022_06_05_structured-concurrency-scala-future.md</link>
+      <title>Structured concurrency with Scala Future</title>
+    </item>
+    <item>
+      <pubDate>Wed, 3 Nov 2021 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2021_11_03_business_vs_match.md</link>
+      <title>The worlds is  loosely coupled</title>
+    </item>
+    <item>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0300</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2021_06_27_automatic-coloring-for-effects.md</link>
+      <title>
+        Problem:  automatic coloring of effect monads in [dotty-cps-async](https://github.com/rssh/dotty-cps-async)
+      </title>
+    </item>
+    <item>
+      <pubDate>Sun, 6 Aug 2017 00:00:00 +0300</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2017_08_06_concurrency_in_new_language.md</link>
+      <title>So, I want to add concurrency to my language...</title>
+    </item>
+    <item>
+      <pubDate>Sun, 27 Mar 2016 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2016_27_03_back-my-stack-traces.md</link>
+      <title>Give my stacktraces back</title>
+    </item>
+    <item>
+      <pubDate>Sat, 12 Mar 2016 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2016_03_12_chan-chan-chan.md</link>
+      <title>chan chan chan</title>
+    </item>
+    <item>
+      <pubDate>Sat, 5 Mar 2016 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/2016_03_05_see-ma-no-vars.md</link>
+      <title>idiomatic Go &lt;=&gt; Idiomatic Scala</title>
+    </item>
+  </channel>
+</rss>
