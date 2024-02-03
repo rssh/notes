@@ -1,8 +1,3 @@
---
-title: random notes
---
-
-
 # notes
 just place for some random notes about programming 
 
