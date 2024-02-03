@@ -56,7 +56,7 @@ val items = os.list(path).filter(file =>
       val mdContent = os.read.lines(file)
       val title = extractTitle(mdContent).getOrElse(file.toString)
       val pubDate = ZonedDateTime.of(ctime, LocalTime.MIN, ZoneId.systemDefault)
-      Element.Item.create(title, s"${baseUrl}/file", "at {}", author, pubDate=Some(pubDate))
+      Element.Item.create(title, s"${baseUrl}/${file.baseName}.${file.ext}", "at {}", author, pubDate=Some(pubDate))
     }
 
 val channel = Element.Channel.create(blogTitle,feedUrl,"random unsorted notes",items) 
