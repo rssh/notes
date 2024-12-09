@@ -6,7 +6,7 @@ title: Relative simple and small type-driven dependency injection
 
 Find time to modernize dependency injection in some services. The previous version involved simply passing the context object with fields for services. 
 
-```
+```Scala
    trait AppContext  {
        def   service1(): Service1
        def   service2(): Service2 
@@ -36,14 +36,13 @@ We will use approaches very close to what sideEffffECt describe in https://www.r
 
 We will think that component `C` is provided if we can find AppProvicer[C]]
 
-```
+```Scala
 trait AppContextProvider[T] {
  def get: T
 }
 
-```
+...
 
-```
 object AppContext {
 
 
@@ -55,15 +54,14 @@ def apply[T](using AppContextProvider[T]): T =
 }
 ```
 
-
 If we have an implicit instance of the object, we think it's provided:
    
 
-```
+```Scala
 object AppContextProvider extends AppContextProviderLowLevel {
 
 
- given implicitInstanceProvider[T](using T): AppContextProvider[T] with {
+ given ofGivem[T](using T): AppContextProvider[T] with {
    def get: T = summon[T]
  }
 
@@ -76,7 +74,7 @@ Also, the usual practice for components is to define its implicit provider in th
 
 Example of UserSubscription looks like:
 
-```
+```Scala
 class UserSubscription(using AppContextProvider[EmailService],
                             AppContextProvider[UserDatabase]
                      ) {
@@ -86,12 +84,9 @@ class UserSubscription(using AppContextProvider[EmailService],
    AppContext[EmailService].sendEmail(user, "You have been subscribed")
    AppContext[UserDatabase].insert(user)
 
-
  …. 
 
-
 }
-
 
 object UserSubscription {
    // boilerplate
@@ -110,7 +105,7 @@ Okay, this works, but we have to write some boilerplate. Can we have the same in
 
 Sure,  we can pack the provided parameter types in the tuple and use macroses for extraction.
 
-```
+```Scala
 class UserSubscription(using AppContextProviders[(EmailService,UserDatabase)]) {
 
 
@@ -127,7 +122,7 @@ class UserSubscription(using AppContextProviders[(EmailService,UserDatabase)]) {
 
 How to do this:  at first, we will need a type-level machinery, which will select a first supertype of `T`  from the tuple `Xs`:
 
-```
+```Scala
 object TupleIndex {
 
 
@@ -215,7 +210,7 @@ But this will still be boilerplate: We must enumerate dependencies twice and wri
 
 To minimize this kind of boilerplate,  we can introduce a convention for AppContextProviderModule,  which defines its dependencies in type and automatic generation of instance providers:
 
-```
+```Scala
 trait AppContextProviderModule[T] {
 
 
@@ -264,7 +259,7 @@ Yet one facility usually needed from the dependency injection framework is cachi
 
 Let’s add cache type to the AppContext:
 
-```
+```Scala
 object AppContext  {
 
 
@@ -292,7 +287,7 @@ object AppContext  {
 
 And let's deploy a simple convention:  if the service requires `AppContext.Cache`  as a dependency, then we consider this service cached.  I.e., with manual setup of AppContextProvider this should look like this:
 
-```
+```Scala
 object FuelUsage {
  
  given (using AppContextProviders[(AppContext.Cache, Wheel, Rotor, Tail)]): AppContextProvider[FuelUsage] with
@@ -312,7 +307,7 @@ class appContextCacheClass[T] extends scala.annotation.StaticAnnotation
 Cache operations will follow that annotation when calculating cacheKey[T].
 Typical usage:
 
-```
+```Scala
 trait UserSubscription
 
 @appContextCacheClass[UserSubscription]
@@ -358,7 +353,7 @@ We can write a macro that should be called from the context inside a component d
 
 I.e., a typical component definition will look like this:
 
-```
+```Scala
 class Component(using AppContextProviders[(Dependency1,Dependency2)]) {
    assert(AppContextProviders.allDependenciesAreNeeded)
    ….
@@ -373,5 +368,5 @@ With any other language, a developer can get the default most-known dependency i
   On the other hand, things look good. Scala's flexibility allows one to quickly develop a ‘good enough’ solution despite the fragmented ecosystem.
 
 
-Repository for this mini-framework can be found at https://github.com/rssh/scala-appcontext 
+The repository for this mini-framework can be found at https://github.com/rssh/scala-appcontext 
 
