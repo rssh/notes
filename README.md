@@ -1,6 +1,7 @@
 # notes
 just place for some random notes about programming 
 
+* 2024/12/09 [Small and simple type-driven dependency injection]( https://github.com/rssh/notes/blob/master/2024_12_09_dependency-injection.md)
 * 2024/01/30 [Monad for backtracked logical progamming]( https://github.com/rssh/notes/blob/master/2024_01_30_logic-monad-1.md)
 * 2023/05/05 [Two cents about shrinking Scala user base debates]( https://github.com/rssh/notes/blob/master/2023_05_05_two_cents_about_scala_web_development_in_industry.md)
 * 2022.06/05 [Structured concurrency on top of plain Scala Future](https://github.com/rssh/notes/blob/master/2022_06_05_structured-concurrency-scala-future.md)
