@@ -317,7 +317,7 @@ class TestUserSubscription(using TestUserSubscription.DependenciesProviders)
  ...
 ```
 
-#Preventing pitfalls
+# Preventing pitfalls
 
 Can this be considered a complete mini-framework? Still waiting.
 Let’s look at the following code:
