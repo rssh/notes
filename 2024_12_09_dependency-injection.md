@@ -34,7 +34,7 @@ We will use approaches very close to what sideEffffECt describe in https://www.r
 
 # Basic
 
-We will think that component `C` is provided if we can find AppProvicer[C]]
+We will think that component `C` is provided if we can find AppProvider[C]]
 
 ```Scala
 trait AppContextProvider[T] {
@@ -58,8 +58,9 @@ If we have an implicit instance of the object, we think it's provided:
    
 
 ```Scala
-object AppContextProvider extends AppContextProviderLowLevel {
+object AppContextProvider  {
 
+ ....
 
  given ofGivem[T](using T): AppContextProvider[T] with {
    def get: T = summon[T]
