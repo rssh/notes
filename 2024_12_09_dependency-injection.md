@@ -22,7 +22,7 @@ Find time to modernize dependency injection in some services. The previous versi
 However, for relatively small applications, it is possible to live with.
 
 
-If we switch to type-driven context resolving (i.e., use AppContext[Service1] instead of appContext.service1 ),  we will solve the modularization problem.
+If we switch to type-driven context resolving (i.e., use `AppContext[Service1]` instead of `appContext.service1` ),  we will solve the modularization problem.
 
 The first look was at the approach described by @odersky in https://old.reddit.com/r/scala/comments/1eksdo2/automatic_dependency_injection_in_pure_scala/.
 (code:  https://github.com/scala/scala3/blob/main/tests/run/Providers.scala )
@@ -181,7 +181,7 @@ object AppContextProviders {
 
 (complete code is available in the repository: https://github.com/rssh/scala-appcontext )
 
-We separate `AppContextProvidersSearch` and `AppContextProviders` because we don't want to trigger AppContextProviders' implicit generation during implicit search outside of service instance generation.
+We separate `AppContextProvidersSearch` and `AppContextProviders` because we don't want to trigger `AppContextProviders` implicit generation during implicit search outside of service instance generation.
   Note that Scala currently has no way to make a macro that generates a given instance to fail an implicit search silently. We can only make errors during the search, which will abandon the whole compilation.  
 
 Can we also remove the boilerplate when defining the implicit AppContext provider?
@@ -209,7 +209,7 @@ object UserSubscription {
 
 But this will still be boilerplate: We must enumerate dependencies twice and write trivial instance creation. On the other hand, this instance creation is not entirely meaningless: we can imagine the situation when it's not automatic.
 
-To minimize this kind of boilerplate,  we can introduce a convention for AppContextProviderModule,  which defines its dependencies in type and automatic generation of instance providers:
+To minimize this kind of boilerplate,  we can introduce a convention for `AppContextProviderModule`,  which defines its dependencies in type and automatic generation of instance providers:
 
 ```Scala
 trait AppContextProviderModule[T] {
@@ -286,7 +286,7 @@ object AppContext  {
 ```
  
 
-And let's deploy a simple convention:  if the service requires `AppContext.Cache`  as a dependency, then we consider this service cached.  I.e., with manual setup of AppContextProvider this should look like this:
+And let's deploy a simple convention:  if the service requires `AppContext.Cache`  as a dependency, then we consider this service cached.  I.e., with manual setup of `AppContextProvider` this should look like this:
 
 ```Scala
 object FuelUsage {
@@ -347,9 +347,9 @@ println(c3.doSomething())
 
 What will be printed?
 
-The correct answer is  “dep1:module:dep2:local”,  because resolving of Dependency1 from the companion object of Dependency1 will be preferred over resolving from the AppContextProvider companion object.   Unfortunately, I don’t know how to change this.  
+The correct answer is  `“dep1:module:dep2:local”`,  because resolving of `Dependency1` from the companion object will be preferred over resolving from the `AppContextProvider` companion object.   Unfortunately, I don’t know how to change this.  
 
-We can add a check to determine whether supplied providers are needed. Again, unfortunately, we can’t add it ‘behind the scenes' by modifying the generator of AppContextProvider because the generator is inlined in the caller context for the component instance, where all dependencies should be resolved.
+We can add a check to determine whether supplied providers are needed. Again, unfortunately, we can’t add it ‘behind the scenes' by modifying the generator of `AppContextProvider` because the generator is inlined in the caller context for the component instance, where all dependencies should be resolved.
 We can write a macro that should be called from the context inside a component definition.  This will require the developer to call it explicitly.
 
 I.e., a typical component definition will look like this:
