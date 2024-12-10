@@ -179,7 +179,7 @@ object AppContextProviders {
 ```
 
 
-(complete code is available in the repository: https://github.com/rssh/scala-appcontext )
+(complete code is available in the repository: https://github.com/rssh/scala-appcontext ; permalink to generateImpl: https://github.com/rssh/scala-appcontext/blob/666a02e788aa57922104569541511a16431690fb/shared/src/main/scala/com/github/rssh/appcontext/AppContextProviders.scala#L52  )
 
 We separate `AppContextProvidersSearch` and `AppContextProviders` because we don't want to trigger `AppContextProviders` implicit generation during implicit search outside of service instance generation.
   Note that Scala currently has no way to make a macro that generates a given instance to fail an implicit search silently. We can only make errors during the search, which will abandon the whole compilation.  
