@@ -37,7 +37,7 @@ Where AppContextAsyncProviders is constructed in the same way as `AppContextProv
 
 Before diving into details, let’s speak about the second difference:  monadic (or asynchronous) retrieving of dependencies:
 
-```
+```Scala
 trait AppContextAsyncProvider[F[_],T] {
 
    def get: F[T]
