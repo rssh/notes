@@ -4,6 +4,8 @@ title: small type-driven dependency injection in effect systems.
 
 At first, detective history with Reddit moderation:  During the previous post form this series,  it was a comment about the effect systems.  I have give two answers:  one with a technical overview a second one with the note that it is possible to use static AppContextProvider.  Few days later I accidentally sow this discussion on the other computer, where I was not logged to reddit, and discover that my first reply was deleted by moderator. Interesting, that I don’t see this if I logged by itself.  Quite strange, I guess this is automatic moderation based on some pattern. 
 
+Prerequisite:  reader is familiar with the previous part: https://github.com/rssh/notes/blob/master/2024_12_09_dependency-injection.md
+
 Ok.  Let’s adjust our type-based injection framework to the effect systems.  This text is a result of a joint work with  Ivan Kyrylov during GSoC-2024.  The main work was not about dependency injection but abstract representations of effect, but static dependency injection was a starting point for Ivan's journey.  Our first attempt was based on another approach, then here (we trying to automatically assemble typemap of needed injections,  which as state of scala-3.x is impossible,  because we can’t return context function from macros),  but during this stage we receive some understanding, what should work.
 
 At first, what make dependency injection different in the effect system environment?
