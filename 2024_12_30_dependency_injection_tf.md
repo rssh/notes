@@ -124,7 +124,7 @@ object AppContextAsyncProviders {
  }
 
  def tryBuildImpl[F[_]:Type, Xs <: NonEmptyTuple:Type](using Quotes): Expr[TryBuild[F,Xs]] = {
-   //  
+   // our macro, which now returns TryBuildFailere instead of reporting the error.
  }
 
  ..
@@ -162,13 +162,13 @@ Yet one popular style is using a concrete monads,  for example `IO` instead `F[_
 
 ## Environment effects.
 
-If we open the theme of using type-driven dependency injection in the effect systems,  maybe we should say few words about libraries like zio or kyo, which provides own implementation of dependency injection. 
-All them based on concept,  that types needed for computation are encoded in it signature (similar to our tagless-final approach). In theory, our approach cah simplicity interaction points with such libraries (i.e. we can assemble needed computation environmemt from providers). 
+If we open the theme of using type-driven dependency injection in the effect systems, maybe we should say a few words about libraries like zio or kyo, which provide their implementation of dependency injection. 
+All of them are based on the concept that types needed for computation are encoded in their signature (similar to our tagless-final approach). In theory, our approach can simplify interaction points with such libraries (i.e., we can assemble the needed computation environment from providers). 
 
 
-That’s all for today.  Tagless final part are published as subproject in appcontext with name “appcontext-tf”, 
+That’s all for today.  The tagless final part are published as a subproject in `appcontext` with name “appcontext-tf”, 
 (github: https://github.com/rssh/scala-appcontext )
-You can try it using  `“com.github.rssh” %%% “appcontext-tf” % “0.2.0”` as dependency.  (maybe it should be joined with core ?) Will be grateful about problem reports and suggestions for better names.  
+You can try it using  `“com.github.rssh” %%% “appcontext-tf” % “0.2.0”` as dependency.  (maybe it should be joined with the core ?) I will be grateful for problem reports and suggestions for better names.  
 
 
 
