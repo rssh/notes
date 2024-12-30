@@ -8,7 +8,7 @@ Prerequisite: the  reader is familiar with the previous part: https://github.com
 
 Ok.  Let’s adjust our type-based injection framework to the effect systems.  This text is a result of joint work with  Ivan Kyrylov during GSoC-2024.  The main work was not about dependency injection but abstract representations of effect. Static dependency injection was a starting point for Ivan's journey.  Our first attempt was based on another approach than here (we tried to automatically assemble a type map of needed injections, which, as a state of scala-3.x, is impossible because we can’t return context function from macros), but during this stage, we receive some understanding, what should work.
 
-At first, what make dependency injection different in the effect system environment?
+First, what makes dependency injection different in the effect system environment?
 - Types of dependencies are encoded into the type of enclosing monad.
 - Retrieving of dependencies can be asynchronous: 
 
@@ -102,7 +102,7 @@ trait ConnectionPool {
 ```
 (assuming minimal [ToyMonad](https://github.com/rssh/scala-appcontext/blob/59014c7aecacf81ea3fb6f9415ed603001032248/tagless-final/shared/src/test/scala/com/github/rssh/toymonad/ToyMonad.scala#L15) )
 
-Here, new subscriber bounds will trigger search for `UserDatabase`(1) which will trigger search for `ConnectionPool`(3) which at first will be searched in the `InAppContext[..][F]` scope which will trigger building of `AppContextProviders[ConnectionPool*:EmptyTuple]`(4) which will be called because `InAppContext[(ConnectionPool *: EmptyTuple])` is a type parameter of enclosing function and then will start searching in enclosing scope (5).
+Here, new subscriber bounds will trigger search for `UserDatabase`(1) which will trigger a search for `ConnectionPool`(3) which at first will be searched in the `InAppContext[..][F]` scope which will trigger the building of `AppContextProviders[ConnectionPool*:EmptyTuple]`(4) which will be called because `InAppContext[(ConnectionPool *: EmptyTuple])` is a type parameter of enclosing function and then will start searching in enclosing scope (5).
 
 The problem is that if step (4) triggers our macro and the macro produces an error, we will report an error, not be able to continue a search, and never reach step (5).
 
@@ -158,17 +158,17 @@ See [Example 5](https://github.com/rssh/scala-appcontext/blob/main/tagless-final
 
 ## Concrete monad style
 
-Yet one popular style is using a concrete monads,  for example `IO` instead `F[_]`.  In such case we don’t need `InAppContext`  and can pass providers as in core case, as context parameters.  What providers to use:  `AppContextProvider or AppContextAsyncProviders`  become a question of taste.  You even can use `AppContextProviderModule` with async dependencies.  
+Yet one popular style is using a concrete monads,  for example `IO` instead `F[_]`.  In such case, we don’t need `InAppContext` and can pass providers, as in the core case, as context parameters.  What providers to use:  `AppContextProvider or AppContextAsyncProviders`  becomes a question of taste.  You can even use `AppContextProviderModule` with async dependencies.  
 
 [Example](https://github.com/rssh/scala-appcontext/blob/main/tagless-final/jvm/src/test/scala/com/github/rssh/appcontexttest/Example7Test.scala)
 
 ## Environment effects.
 
-If we open the theme of using type-driven dependency injection in the effect systems, maybe we should say a few words about libraries like zio or kyo, which provide their implementation of dependency injection. 
-All of them are based on the concept that types needed for computation are encoded in their signature (similar to our tagless-final approach). In theory, our approach can simplify interaction points with such libraries (i.e., we can assemble the needed computation environment from providers). 
+If we open the theme of using type-driven dependency injection in the effect systems, we should say a few words about libraries like zio or kyo, which provide their implementation of dependency injection. 
+All of them are based on the concept that types needed for computation are encoded in their signature (similar to our tagless-final approach). Theoretically, our approach can simplify interaction points with such libraries (i.e., we can assemble the needed computation environment from providers). 
 
 
-That’s all for today.  The tagless final part are published as a subproject in `appcontext` with name “appcontext-tf”, 
+That’s all for today.  The tagless final part is published as a subproject in `appcontext` with name “appcontext-tf”, 
 (github: https://github.com/rssh/scala-appcontext )
 You can try it using  `“com.github.rssh” %%% “appcontext-tf” % “0.2.0”` as dependency.  (maybe it should be joined with the core ?) I will be grateful for problem reports and suggestions for better names.  
 
