@@ -6,6 +6,13 @@
     <description><![CDATA[random unsorted notes]]></description>
     <docs>https://cyber.harvard.edu/rss/rss.html</docs>
     <item>
+      <pubDate>Mon, 30 Dec 2024 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/blob/master/2024_12_30_dependency_injection_tf.md</link>
+      <title>small type-driven dependency injection in effect systems.</title>
+    </item>
+    <item>
       <pubDate>Mon, 9 Dec 2024 00:00:00 +0200</pubDate>
       <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
       <description><![CDATA[at {}]]></description>
