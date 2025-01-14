@@ -2,7 +2,7 @@
 title: small type-driven dependency injection in effect systems.
 ---
 
-At first, the detective history with Reddit moderation: During the previous post from this series, there was a comment about the effect systems.  I have given two answers: one with a technical overview and the second with the note that it is possible to use static AppContextProvider.  A few days later, I accidentally saw this discussion on the other computer, where I was not logged into Reddit, and discovered that a moderator deleted my first reply. Interesting that I don’t see this if I logged by itself.  Quite strange; I guess this is automatic moderation based on some pattern. 
+At first, the detective history with Reddit moderation: During the previous post from this series, there was a comment about the effect systems.  I have given two answers: one with a technical overview and the second with the note that it is possible to use static AppContextProvider.  A few days later, I accidentally saw this discussion on the other computer, where I was not logged into Reddit, and discovered that a moderator deleted my first reply. Interesting that I don’t see this if I logged by itself.  Quite strange; I guess this is automatic moderation based on some pattern. [UPD: it was automatic moderation due to a link to `telegra.ph`, which was used by Ivan to post about a project]
 
 Prerequisite: the  reader is familiar with the previous part: https://github.com/rssh/notes/blob/master/2024_12_09_dependency-injection.md
 
