@@ -27,7 +27,7 @@ println(c.doSomething())  // Prints "dep1:module, dep2:local" - not what we want
 
 The problem was that `AppContextProvider[Dependency1]` defined in `Dependency1`'s companion object takes priority over the one extracted from `AppContextProviders`, because Scala's implicit search gives high priority to the companion object of the result type.
 
-We had a workaround - `AppContextProviders.checkAllAreNeeded` - to detect such issues at compile time. But now we can solve the problem properly. I don't know why I missed this during writing a first variant, becouse now it looks obviously.
+We had a workaround - `AppContextProviders.checkAllAreNeeded` - to detect such issues at compile time. But now we can solve the problem properly. I don't know why I missed this during writing a first variant, now it looks trivial.
 
 It turns out we can easy solve this problem by introducing an intermediate lookup type. If we search for a different type, which requere AppContextProvider[X],  Scala compiler won't look in the companion object.
 
