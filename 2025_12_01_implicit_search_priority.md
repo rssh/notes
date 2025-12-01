@@ -82,7 +82,7 @@ When no `AppContextProviders` is in scope:
 3. Falls back to `fromProvider` which delegates to `AppContextProvider[T]`
 4. The companion-defined provider is used as expected
 
-Now It Works as Expected
+Now it works as expected:
 
 ```scala
 class Component(using AppContextProviders[(Dependency1, Dependency2)]) {
