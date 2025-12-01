@@ -6,6 +6,13 @@
     <description><![CDATA[random unsorted notes]]></description>
     <docs>https://cyber.harvard.edu/rss/rss.html</docs>
     <item>
+      <pubDate>Mon, 1 Dec 2025 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/blob/master/2025_12_01_implicit_search_priority.md</link>
+      <title>Solving the Implicit Search Priority Problem in AppContext</title>
+    </item>
+    <item>
       <pubDate>Mon, 30 Dec 2024 00:00:00 +0200</pubDate>
       <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
       <description><![CDATA[at {}]]></description>
