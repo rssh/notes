@@ -347,7 +347,9 @@ println(c3.doSomething())
 
 What will be printed?
 
-The correct answer is  `“dep1:module:dep2:local”`,  because resolving of `Dependency1` from the companion object will be preferred over resolving from the `AppContextProvider` companion object.   Unfortunately, I don’t know how to change this.  
+The correct answer is  `"dep1:module:dep2:local"`,  because resolving of `Dependency1` from the companion object will be preferred over resolving from the `AppContextProvider` companion object.   Unfortunately, I don't know how to change this.
+
+**UPD (2025-12-01):** This problem is now fixed by introducing `AppContextProviderLookup` - an intermediate type that changes the implicit search order. See [Solving the Implicit Search Priority Problem](https://github.com/rssh/notes/blob/master/2025_12_01_implicit_search_priority.md) for details. The workaround described below (`checkAllAreNeeded`) is no longer needed and has been removed.
 
 We can add a check to determine whether supplied providers are needed. Again, unfortunately, we can’t add it ‘behind the scenes' by modifying the generator of `AppContextProvider` because the generator is inlined in the caller context for the component instance, where all dependencies should be resolved.
 We can write a macro that should be called from the context inside a component definition.  This will require the developer to call it explicitly.
