@@ -1,8 +1,8 @@
 #!/usr/bin/env -S scala-cli -S 3
 
-//> using scala "3.3.3"
-//> using dep "com.mchange::audiofluidity-rss:0.0.6"
-//> using dep "com.lihaoyi::os-lib::0.11.3"
+//> using scala "3.3.7"
+//> using dep "com.mchange::audiofluidity-rss:0.1.2"
+//> using dep "com.lihaoyi::os-lib::0.11.6"
 //
 
 val blogTitle = "Random notes about programming"
