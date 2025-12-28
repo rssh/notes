@@ -6,6 +6,13 @@
     <description><![CDATA[random unsorted notes]]></description>
     <docs>https://cyber.harvard.edu/rss/rss.html</docs>
     <item>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/blob/master/2025_12_28_durable_execution_scala.md</link>
+      <title>We can have durable execution at home</title>
+    </item>
+    <item>
       <pubDate>Mon, 1 Dec 2025 00:00:00 +0200</pubDate>
       <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
       <description><![CDATA[at {}]]></description>
