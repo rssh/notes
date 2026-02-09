@@ -4,7 +4,7 @@ title: "Scored Logic Monad: when logic meets reinforcement learning"
 
 Some time ago, I wrote about a logic monad (see [Scala and logical monad programming](https://github.com/rssh/notes/blob/master/2024_01_30_logic-monad-1.md)), which is convenient for organizing logical search over the space of possible events.  In short, a logic monad represents a stream of alternatives: `mplus` combines two branches, `msplit` peels off the first result, and `mzero` is a dead end.  One limitation that bothered me in real life is the lack of prioritization.  Plain logical search is blind: all branches are equal, but usually we have preferences.  So, let's extend our logical monad for search over scored variants.
 
-Meet `CpsScoredLogicMonad` in the new [rl-logic](https://github.com/rssh/rl-logic) package.  The idea is simple: if a logical monad is a queue of variants, then ScoredLogicMonad is a priority queue.
+Meet `CpsScoredLogicMonad` in the new [rl-logic](https://github.com/dotty-cps-async/rl-logic) package.  The idea is simple: if a logical monad is a queue of variants, then ScoredLogicMonad is a priority queue.
 
 ```Scala
 trait CpsScoredLogicMonad[F[_], R: ScalingGroup : Ordering] extends CpsLogicMonad[F] {
@@ -90,14 +90,14 @@ def shortestPath[F[_] : CpsScoredLogicMonad.Curry[Float], N](
 
 The classic Dijkstra uses a mutable priority queue.  Here, `frontier` plays that role implicitly — `msplit` always retrieves the lowest-cost entry, and `multiScore` creates scored branches explored in priority order.  The `suspended` call provides trampolining to avoid stack overflow on large graphs.
 
-Full code is [in the repository](https://github.com/rssh/rl-logic/blob/main/shared/src/test/scala/cps/rl/examples/shortestPath/).
+Full code is [in the repository](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/test/scala/cps/rl/examples/shortestPath/).
 
 ## Reinforcement Learning
 
 Now, let's think about bridging ML techniques and traditional software development.  We have two worlds — in 'plain old software engineering', all is algebraic structures; in machine learning, all is numbers.  The scored logic monad lets you write declarative search where branches are guided by scores derived from a learned model.
 
 There is a well-known framework for learning best choices based on history: Reinforcement Learning.
-The main objects are the [Environment](https://github.com/rssh/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLEnvironment.scala) (which has some state) and the [Agent](https://github.com/rssh/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLAgentBehavior.scala), which produces actions that change state and produce feedback (reward) for the agent.
+The main objects are the [Environment](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLEnvironment.scala) (which has some state) and the [Agent](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLAgentBehavior.scala), which produces actions that change state and produce feedback (reward) for the agent.
 
 ```Scala
 trait RLEnvironment[S, O, A] {
@@ -109,7 +109,7 @@ trait RLEnvironment[S, O, A] {
 }
 ```
 
-The bridge between the environment and the neural network is [`RLModelControl`](https://github.com/rssh/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLModelControl.scala):
+The bridge between the environment and the neural network is [`RLModelControl`](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLModelControl.scala):
 
 ```Scala
 trait RLModelControl[F[_], S, O, A, R, M] {
@@ -123,7 +123,7 @@ trait RLModelControl[F[_], S, O, A, R, M] {
 
 Note that `rateActions` returns an action *inside the scored logic monad* `F[A]`: the neural network assigns a Q-value to each candidate action, and each becomes a branch scored by that value.  `trainCase` feeds the reward back into the model — also inside `F`, so training integrates naturally into the monadic computation.
 
-The [agent behavior](https://github.com/rssh/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLAgentBehavior.scala) ties these together. Here is the core of `performStep`, where `reify`/`reflect` let us write monadic code in direct style:
+The [agent behavior](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLAgentBehavior.scala) ties these together. Here is the core of `performStep`, where `reify`/`reflect` let us write monadic code in direct style:
 
 ```Scala
 def performStep(env: RLEnvironment[S, O, A], envState: S,
@@ -177,7 +177,7 @@ class TikTakToeGame(boardSize: Int, n: Int)
 }
 ```
 
-The [MiniMax agent behavior](https://github.com/rssh/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLMiniMaxAgentBehavior.scala) combines tree search with neural network scoring. We use the neural network to rate possible actions, then explore the tree using the scored logic monad. Branches are weighted by gain estimation via `scoredPure`, and losing moves are pruned via `empty`:
+The [MiniMax agent behavior](https://github.com/dotty-cps-async/rl-logic/blob/main/shared/src/main/scala/cps/rl/RLMiniMaxAgentBehavior.scala) combines tree search with neural network scoring. We use the neural network to rate possible actions, then explore the tree using the scored logic monad. Branches are weighted by gain estimation via `scoredPure`, and losing moves are pruned via `empty`:
 
 ```Scala
 // Inside the minimax exploration (simplified):
@@ -218,4 +218,4 @@ That's all for now.  The library is still young, feedback and ideas are welcome.
 
 The early version of this library is described in the ICTERI 2025 joint paper with Anatoly Doroshenko, Olena Yatsenko & Alexandr Nemish:  [Merging Logic and the Coinductive Selection Monad: Mixing Machine Learning into Logical Search](https://link.springer.com/chapter/10.1007/978-3-032-10477-9_3).
 
-Source code: [https://github.com/rssh/rl-logic](https://github.com/rssh/rl-logic)
+Source code: [https://github.com/dotty-cps-async/rl-logic](https://github.com/dotty-cps-async/rl-logic)
