@@ -1,5 +1,5 @@
 ---
-title: Scored Logic Monad: when logic meets reinforcement learning
+title: "Scored Logic Monad: when logic meets reinforcement learning"
 ---
 
 Some time ago, I wrote about a logic monad (see [Scala and logical monad programming](https://github.com/rssh/notes/blob/master/2024_01_30_logic-monad-1.md)), which is convenient for organizing logical search over the space of possible events.  In short, a logic monad represents a stream of alternatives: `mplus` combines two branches, `msplit` peels off the first result, and `mzero` is a dead end.  One limitation that bothered me in real life is the lack of prioritization.  Plain logical search is blind: all branches are equal, but usually we have preferences.  So, let's extend our logical monad for search over scored variants.
