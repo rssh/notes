@@ -6,11 +6,18 @@
     <description><![CDATA[random unsorted notes]]></description>
     <docs>https://cyber.harvard.edu/rss/rss.html</docs>
     <item>
+      <pubDate>Mon, 16 Feb 2026 00:00:00 +0200</pubDate>
+      <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
+      <description><![CDATA[at {}]]></description>
+      <link>https://github.com/rssh/notes/blob/master/2026_02_16_old_presentations.md</link>
+      <title>Old presentations</title>
+    </item>
+    <item>
       <pubDate>Sat, 7 Feb 2026 00:00:00 +0200</pubDate>
       <author>Ruslan Shevchenko &lt;ruslan@shevchenko.kiev.ua&gt;</author>
       <description><![CDATA[at {}]]></description>
       <link>https://github.com/rssh/notes/blob/master/2026_02_07_scored_logic_monad.md</link>
-      <title>Scored Logic Monad: when logic meets reinforcement learning</title>
+      <title>&quot;Scored Logic Monad: when logic meets reinforcement learning&quot;</title>
     </item>
     <item>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0200</pubDate>

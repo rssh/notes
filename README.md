@@ -1,6 +1,7 @@
 # notes
 just place for some random notes about programming
 
+* 2026/02/16 [Old presentations](https://github.com/rssh/notes/blob/master/2026_02_16_old_presentations.md)
 * 2026/02/07 [Scored Logic Monad: when logic meets reinforcement learning](https://github.com/rssh/notes/blob/master/2026_02_07_scored_logic_monad.md)
 * 2025/12/28 [We can have durable execution at home](https://github.com/rssh/notes/blob/master/2025_12_28_durable_execution_scala.md)
 * 2025/12/01 [Solving the Implicit Search Priority Problem in AppContext](https://github.com/rssh/notes/blob/master/2025_12_01_implicit_search_priority.md)
